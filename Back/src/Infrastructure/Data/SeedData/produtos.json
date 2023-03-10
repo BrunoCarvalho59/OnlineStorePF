@@ -1,0 +1,66 @@
+[
+  {
+    "Nome": "Headphones WH-1000XM5",
+    "Descricao": "Os ultra-confortáveis auscultadores Sony WH-1000XM5 definem novos padrões de audição sem distrações e qualidade de chamada excecional. Dois processadores controlam múltiplos microfones, para um cancelamento de ruído sem precedentes, enquanto o Otimizador de cancelamento de ruído automático otimiza automaticamente o cancelamento de ruído com base nas condições de utilização e no ambiente. O diafragma de 30 mm de design especial oferece uma qualidade de som superior para todo o seu entretenimento.",
+    "Preco": 399.90,
+    "FotoUrl": "(...).jpg",
+    "ProdutoCategoriaId": 4,
+    "ProdutoMarcaId": 6
+  },
+  {
+    "Nome": "Rato Óptico MX Master 3s",
+    "Descricao": "Apresentamos o Logitech MX Master 3S, um rato icónico reinventado para a máxima sensação tátil, desempenho e fluidez. Os botões de clique silenciosos oferecem uma sensação tátil satisfatória com 90% menos ruído de clique. O MX Master 3S agora também possui um sensor ótico 8K para capacidade de resposta de última geração em qualquer superfície, até mesmo em vidro.",
+    "Preco": 99.90,
+    "FotoUrl": "(...).jpg",
+    "ProdutoCategoriaId": 4,
+    "ProdutoMarcaId": 4
+  },
+  {
+    "Nome": "Smartphone Samsung Galaxy S23 Ultra 5G",
+    "Descricao": "Quando a vida é épica, quer partilhá-la. Faça-o com um Smartphone à altura dos seus projetos. O Samsung Galaxy S23 Ultra ultrapassa os limites da categoria Premium em todos os sentidos e permite que mostre ao mundo o que é capaz de fazer. Descubra uma configuração épica de 5 câmaras e um desempenho incrível que nunca o abandonará. Transforme este dispositivo num computador quando precisar com a ajuda do Samsung Dex e leve os seus projetos para onde for. O Galaxy S23 Ultra foi pensado para quem vive uma vida repleta de momentos incríveis e precisa de um aparelho que satisfaça as suas exigências. Galaxy S23 Ultra, partilhe o épico.",
+    "Preco": 1449.90,
+    "FotoUrl": "(...).jpg",
+    "ProdutoCategoriaId": 2,
+    "ProdutoMarcaId": 1
+  },
+  {
+    "Nome": "PowerLine TP-Link AV600 Wireless 300Mbs",
+    "Descricao": "TP-LINK TL-WPA4220KIT estende a sua ligação à Internet para todos os cômodos da casa através de um circuito elétrico existente em sua casa. O TL-WPA4220 tem um botão Clone Wi-Fi que permite ampla extensão, o que significa que você pode copiar automaticamente o SSID e senha para seu roteador. Assim, o TL-WPA4220 simplifica a configuração de Wi-Fi e permite roaming perfeito dentro de sua rede doméstica.",
+    "Preco": 53.90,
+    "FotoUrl": "(...).jpg",
+    "ProdutoCategoriaId": 3,
+    "ProdutoMarcaId": 5
+  },
+  {
+    "Nome": "Portátil Asus Vivobook 15X OLED M1503IA-R74BOHDAB1",
+    "Descricao": "Faça o seu mundo brilhar com o ASUS Vivobook 15X OLED, o portátil repleto de funcionalidades com um ecrã OLED HDR brilhante com uma gama DCI-P3 de nível cinematográfico. O Vivobook 15X OLED facilita a realização de tarefas, em qualquer lugar: tudo nele foi aprimorado, desde o seu poderoso processador móvel AMD Ryzen™ 7 até à sua dobradiça plana de 180°, cores modernas e design geométrico elegante. Comece hoje mesmo com o Vivobook 15X OLED!",
+    "Preco": 899.90,
+    "FotoUrl": "(...).jpg",
+    "ProdutoCategoriaId": 1,
+    "ProdutoMarcaId": 2
+  },
+  {
+    "Nome": "Smartwatch Xiaomi Watch S1 Active GL Space Black",
+    "Descricao": "Leve, confortável e com cores vibrantes, o Xiaomi Watch S1 Active é a escolha ideal para estilos de vida elegantes e desportivos. Com um mostrador sempre ligado AMOLED de 1,43\" e uma resolução cristalina de 326 PPI, o Xiaomi Watch S1 Active oferece um relógio com UI personalizável e mais de 200 rostos de relógio à escolha. Também suporta ajuste de brilho automático para facilidade de utilização quando os utilizadores mudam de trabalhar no exterior para debaixo do sol. Uma moldura metálica requintada oferece uma durabilidade leve enquanto a armação do relógio vem numa de três opções de cor.",
+    "Preco": 139.90,
+    "FotoUrl": "(...).jpg",
+    "ProdutoCategoriaId": 2,
+    "ProdutoMarcaId": 3
+  },
+  {
+    "Nome": "Auriculares Xiaomi Redmi Buds 3 Lite True Wireless Black",
+    "Descricao": "Apresentamos os auriculares verdadeiramente sem fios XiaomiRedmi Buds 3 LiteTWS, com conexão Bluetooth 5.2 instantânea e simples. Retire-os da caixa e comece a usá-los de imediato! Possuem alta qualidade de som, com os drivers dinâmicos de 6 mm, modo de baixa latência para uma experiência gaming imersiva e autonomia total até 18 horas - Energia para todo o dia! Consiga chamadas nítidas com cancelamento de ruído ambiente, alta sensibilidade e simplicidade para os seus controlos de toque, bem como um ajuste seguro e confortável com os 3 tamanhos de pontas Cat Ear e abas flexíveis incluídos.",
+    "Preco": 20.90,
+    "FotoUrl": "(...).jpg",
+    "ProdutoCategoriaId": 2,
+    "ProdutoMarcaId": 3
+  },
+  {
+    "Nome": "Tablet Samsung Galaxy Tab S8 Ultra 14.6\"",
+    "Descricao": "Os Galaxy Tab S8 foram feitos a pensar em cada tipo de cliente, construídos com os melhores materiais e equipados com os componentes mais potentes do mercado. O seu processador Snapdragon 8 Gen 1 de 4nm é o mais avançado num Galaxy Tab, combinado com o ecrã de 120Hz.",
+    "Preco": 1099.90,
+    "FotoUrl": "(...).jpg",
+    "ProdutoCategoriaId": 2,
+    "ProdutoMarcaId": 1
+  }
+]
