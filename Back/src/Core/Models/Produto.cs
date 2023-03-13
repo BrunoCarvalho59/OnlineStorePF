@@ -1,6 +1,6 @@
 namespace Core.Models
 {
-    public class Produto
+    public class Produto : BaseEntity
     {
         public int Id { get; set; }
         public string Nome { get; set; }  

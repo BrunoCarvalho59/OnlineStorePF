@@ -28,7 +28,7 @@ namespace OnlineStore.API.Controllers
             return await _repo.GetProdutoByIdAsync(id);
         }
 
-        [HttpGet("marcas")]
+        [HttpGet("categorias")]
         public async Task<ActionResult<List<ProdutoCategoria>>> GetCategorias()
         {
             var categorias = await _repo.GetCategoriasAsync();
@@ -36,7 +36,7 @@ namespace OnlineStore.API.Controllers
             return Ok(categorias);
         }
 
-        [HttpGet("categorias")]
+        [HttpGet("marcas")]
         public async Task<ActionResult<List<ProdutoMarca>>> GetMarcas()
         {
             var marcas = await _repo.GetMarcasAsync();
