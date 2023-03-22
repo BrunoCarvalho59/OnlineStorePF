@@ -5,20 +5,25 @@ import {HttpClientModule } from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { ProdutosComponent } from './produtos/produtos.component';
+import { LojaModule } from './loja/loja.module';
+import { HomeModule } from './home/home.module';
+import { CoreModule } from './core/core.module';
+import { BasketModule } from './basket/basket.module';
+
 
 @NgModule({
   declarations: [
-    AppComponent,
-    NavBarComponent,
-    ProdutosComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    CoreModule,
+    LojaModule,
+    HomeModule,
+    BasketModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

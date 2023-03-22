@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -9,12 +8,9 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit{
   title = 'ITShop';
 
-  constructor(private http: HttpClient)  {}
+  constructor()  {}
 
   /* O método ngOnIt é chamado antes do Html*/
   ngOnInit(): void {
-    this.http.get('https://localhost:5001/api/produtos').subscribe({
-      
-    })
   }
 }

@@ -11,7 +11,7 @@
     "Nome": "Rato Óptico MX Master 3s",
     "Descricao": "Apresentamos o Logitech MX Master 3S, um rato icónico reinventado para a máxima sensação tátil, desempenho e fluidez. Os botões de clique silenciosos oferecem uma sensação tátil satisfatória com 90% menos ruído de clique. O MX Master 3S agora também possui um sensor ótico 8K para capacidade de resposta de última geração em qualquer superfície, até mesmo em vidro.",
     "Preco": 99.90,
-    "FotoUrl": "(...).jpg",
+    "FotoUrl": "/Back/src/OnlineStore.API/wwwroot/Imagens/Produtos/p044937_01.jpg.jpg",
     "ProdutoCategoriaId": 4,
     "ProdutoMarcaId": 4
   },
@@ -19,7 +19,7 @@
     "Nome": "Smartphone Samsung Galaxy S23 Ultra 5G",
     "Descricao": "Quando a vida é épica, quer partilhá-la. Faça-o com um Smartphone à altura dos seus projetos. O Samsung Galaxy S23 Ultra ultrapassa os limites da categoria Premium em todos os sentidos e permite que mostre ao mundo o que é capaz de fazer. Descubra uma configuração épica de 5 câmaras e um desempenho incrível que nunca o abandonará. Transforme este dispositivo num computador quando precisar com a ajuda do Samsung Dex e leve os seus projetos para onde for. O Galaxy S23 Ultra foi pensado para quem vive uma vida repleta de momentos incríveis e precisa de um aparelho que satisfaça as suas exigências. Galaxy S23 Ultra, partilhe o épico.",
     "Preco": 1449.90,
-    "FotoUrl": "(...).jpg",
+    "FotoUrl": "",
     "ProdutoCategoriaId": 2,
     "ProdutoMarcaId": 1
   },
@@ -43,7 +43,7 @@
     "Nome": "Smartwatch Xiaomi Watch S1 Active GL Space Black",
     "Descricao": "Leve, confortável e com cores vibrantes, o Xiaomi Watch S1 Active é a escolha ideal para estilos de vida elegantes e desportivos. Com um mostrador sempre ligado AMOLED de 1,43\" e uma resolução cristalina de 326 PPI, o Xiaomi Watch S1 Active oferece um relógio com UI personalizável e mais de 200 rostos de relógio à escolha. Também suporta ajuste de brilho automático para facilidade de utilização quando os utilizadores mudam de trabalhar no exterior para debaixo do sol. Uma moldura metálica requintada oferece uma durabilidade leve enquanto a armação do relógio vem numa de três opções de cor.",
     "Preco": 139.90,
-    "FotoUrl": "(...).jpg",
+    "FotoUrl": "Back/src/OnlineStore.API/wwwroot/Imagens/Produtos/8885_1.jpg",
     "ProdutoCategoriaId": 2,
     "ProdutoMarcaId": 3
   },
