@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Identity.Migrations
 {
     [DbContext(typeof(AppIdentityDbContext))]
-    [Migration("20230314173648_IdentityInitial")]
-    partial class IdentityInitial
+    [Migration("20230322141650_IdentityMig")]
+    partial class IdentityMig
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -100,31 +100,31 @@ namespace Infrastructure.Identity.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("AppUserId")
+                    b.Property<string>("appUserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Country")
+                    b.Property<string>("country")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Localidade")
+                    b.Property<string>("localidade")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PrimeiroNome")
+                    b.Property<string>("primeiroNome")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Rua")
+                    b.Property<string>("rua")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UltimoNome")
+                    b.Property<string>("ultimoNome")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Zip")
+                    b.Property<string>("zip")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AppUserId")
+                    b.HasIndex("appUserId")
                         .IsUnique();
 
                     b.ToTable("Morada");
@@ -155,6 +155,22 @@ namespace Infrastructure.Identity.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "d3cf2bac-0b77-4554-9555-11b9d5c1cc5a",
+                            ConcurrencyStamp = "f47fec2e-595d-4ba4-b389-9df0f60aa4eb",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = "5b9518bc-f971-4c6f-8e0b-230503eff080",
+                            ConcurrencyStamp = "8462b0a8-eda0-4cb3-9d33-a9c1952a0b23",
+                            Name = "GerenteLoja",
+                            NormalizedName = "GERENTELOJA"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -265,13 +281,13 @@ namespace Infrastructure.Identity.Migrations
 
             modelBuilder.Entity("Core.Models.Utilizador.Morada", b =>
                 {
-                    b.HasOne("Core.Models.Utilizador.AppUser", "AppUser")
+                    b.HasOne("Core.Models.Utilizador.AppUser", "appUser")
                         .WithOne("Morada")
-                        .HasForeignKey("Core.Models.Utilizador.Morada", "AppUserId")
+                        .HasForeignKey("Core.Models.Utilizador.Morada", "appUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("AppUser");
+                    b.Navigation("appUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -1,27 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, Input, OnInit } from '@angular/core';
+import { BasketService } from 'src/app/basket/basket.service';
+import { Produto } from 'src/app/shared/models/produto';
 
 @Component({
   selector: 'app-produtos',
   templateUrl: './produtos.component.html',
   styleUrls: ['./produtos.component.scss']
 })
-export class ProdutosComponent implements OnInit {
-  public produtos: any;
+export class ProdutosComponent{
+  @Input() produto?: Produto;
 
-  constructor(private http: HttpClient) { }
+  constructor(private basketService: BasketService) {}
 
-  //Este próximo método inicia antes de ser chamado o html
-  ngOnInit(): void {
-
+  addItemToBasket() {
+    this.produto && this.basketService.addItemToBasket(this.produto);
   }
 
-  /*public getProdutos(): void {
-    this.http.get('https://localhost:5001/api/Produtos').subscribe(
-      response => {
-        this.produtos = response;
-      },
-      error => console.log(error)
-    );
-  }*/
+
 }

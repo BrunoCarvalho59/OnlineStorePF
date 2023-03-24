@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Infrastructure.Identity.Migrations
 {
-    public partial class IdentityInitial : Migration
+    public partial class IdentityMig : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -161,24 +161,34 @@ namespace Infrastructure.Identity.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PrimeiroNome = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UltimoNome = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Rua = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Localidade = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Country = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Zip = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    AppUserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    primeiroNome = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ultimoNome = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    rua = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    localidade = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    country = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    zip = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    appUserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Morada", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Morada_AspNetUsers_AppUserId",
-                        column: x => x.AppUserId,
+                        name: "FK_Morada_AspNetUsers_appUserId",
+                        column: x => x.appUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[] { "5b9518bc-f971-4c6f-8e0b-230503eff080", "8462b0a8-eda0-4cb3-9d33-a9c1952a0b23", "GerenteLoja", "GERENTELOJA" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[] { "d3cf2bac-0b77-4554-9555-11b9d5c1cc5a", "f47fec2e-595d-4ba4-b389-9df0f60aa4eb", "Admin", "ADMIN" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -220,9 +230,9 @@ namespace Infrastructure.Identity.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Morada_AppUserId",
+                name: "IX_Morada_appUserId",
                 table: "Morada",
-                column: "AppUserId",
+                column: "appUserId",
                 unique: true);
         }
 

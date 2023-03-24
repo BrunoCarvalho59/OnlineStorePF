@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit{
   title = 'ITShop';
 
-  constructor()  {}
+  constructor() {}
 
   /* O método ngOnIt é chamado antes do Html*/
   ngOnInit(): void {

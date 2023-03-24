@@ -1,8 +1,8 @@
 import { Produto } from "./produto";
 
 export interface Pagination<T> {
-  paginaIndex: number;
-  paginaSize: number;
+  pageIndex: number;
+  pageSize: number;
   count: number;
   data: T;
 }

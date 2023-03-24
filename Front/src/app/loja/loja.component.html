@@ -2,43 +2,55 @@
   <div class="row">
     <section class="col-3">
         <h5 class="text-warning ms-3">Ordem</h5>
-        <select class="form-select mb-4">
-            <option>Alfabética</option>
-            <option>Preço: Do mais barato para o mais caro</option>
-            <option>Preço: Do mais caro para o mais barato</option>
+        <select class="form-select mb-4" (change)="onSortSelected($event)">
+            <option *ngFor="let sort of sortOptions" [value]="sort.value">
+              {{ sort.nome }}
+            </option>
         </select>
         <h5 class="text-warning ms-3">Marcas</h5>
         <ul class="list-group my-3">
-          <li class="list-group-item active">An active item</li>
-          <li class="list-group-item">A second item</li>
-          <li class="list-group-item">A third item</li>
-          <li class="list-group-item">A fourth item</li>
-          <li class="list-group-item">And a fifth one</li>
+          <li class="list-group-item"
+              *ngFor="let marca of marcas"
+              [class.active]="marca.id === lojaParams.marcaId"
+              [value]="marca.id"
+              (click)="onMarcaSelected(marca.id)"
+          >{{marca.nome}}</li>
         </ul>
         <h5 class="text-warning ms-3">Categorias</h5>
         <ul class="list-group my-3">
-          <li class="list-group-item active">An active item</li>
-          <li class="list-group-item">A second item</li>
-          <li class="list-group-item">A third item</li>
-          <li class="list-group-item">A fourth item</li>
-          <li class="list-group-item">And a fifth one</li>
+          <li class="list-group-item"
+              *ngFor="let categoria of categorias"
+              [class.active]="categoria.id === lojaParams.categoriaId"
+              [value]="categoria.id"
+              (click)="onCategoriaSelected(categoria.id)"
+              >{{categoria.nome}}</li>
         </ul>
     </section>
     <section class="col-9">
-        <div class="d-flex justify-content-between align-items center pb-2">
-          <header>
-            <span>Showing <strong>8</strong> of <strong>16</strong>Results</span>
-          </header>
+        <div class="d-flex justify-content-between align-items-center pb-2">
+          <app-paging-header
+              [totalCount]="totalCount"
+              [pageIndex]="lojaParams.pageIndex"
+              [pageSize]="lojaParams.pageSize"
+          ></app-paging-header>
           <div class="d-flex mt-2">
-              <input type="text" placeholder="Search" class="form-control me-2">
-              <button class="btn btn-outline-primary mx-2">Search</button>
-              <button class="btn btn-outline-success">Reset</button>
+              <input (keyup.enter)="onSearch()" key="text" placeholder="Search" class="form-control me-2" #search>
+              <button (click)="onSearch()" class="btn btn-outline-primary mx-2">Search</button>
+              <button (click)="onReset()" class="btn btn-outline-success">Reset</button>
           </div>
         </div>
-        <div class="row row-cols-3 g-3">
+        <div class="row row-cols-3 g-3 mb-4">
           <div class="col" *ngFor="let produto of produtos">
-            <app-produtos></app-produtos>
+            <app-produtos [produto]="produto"></app-produtos>
           </div>
+        </div>
+
+        <div class="d-flex justify-content-center" *ngIf="totalCount > 0">
+            <app-pager
+            [totalCount]="totalCount"
+            [pageSize]="lojaParams.pageSize"
+            (pageChanged)="onPageChanged">
+            </app-pager>
         </div>
     </section>
   </div>

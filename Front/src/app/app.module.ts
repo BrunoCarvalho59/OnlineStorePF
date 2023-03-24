@@ -21,7 +21,6 @@ import { BasketModule } from './basket/basket.module';
     BrowserAnimationsModule,
     HttpClientModule,
     CoreModule,
-    LojaModule,
     HomeModule,
     BasketModule,
   ],
