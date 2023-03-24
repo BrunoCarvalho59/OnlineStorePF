@@ -14,11 +14,24 @@ namespace Infrastructure.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    BasketData = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     lastUpdated = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Baskets", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "BasketsCliente",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    lastUpdated = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BasketsCliente", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -65,9 +78,9 @@ namespace Infrastructure.Data.Migrations
                 {
                     table.PrimaryKey("PK_BasketItems", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_BasketItems_Baskets_BasketClienteId",
+                        name: "FK_BasketItems_BasketsCliente_BasketClienteId",
                         column: x => x.BasketClienteId,
-                        principalTable: "Baskets",
+                        principalTable: "BasketsCliente",
                         principalColumn: "Id");
                 });
 
@@ -123,10 +136,13 @@ namespace Infrastructure.Data.Migrations
                 name: "BasketItems");
 
             migrationBuilder.DropTable(
+                name: "Baskets");
+
+            migrationBuilder.DropTable(
                 name: "Produtos");
 
             migrationBuilder.DropTable(
-                name: "Baskets");
+                name: "BasketsCliente");
 
             migrationBuilder.DropTable(
                 name: "Categorias");

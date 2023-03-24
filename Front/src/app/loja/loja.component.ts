@@ -20,7 +20,7 @@ export class LojaComponent implements OnInit{
     {nome: 'Alfabética', value: 'nome'},
     {nome: 'Preço: Do mais barato para o mais caro', value: 'priceAsc'},
     {nome: 'Preço: Do mais caro para o mais barato', value: 'priceDes'},
-  ]
+  ];
   totalCount = 0;
 
   constructor(private lojaService: LojaService){}

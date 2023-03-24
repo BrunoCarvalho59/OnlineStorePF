@@ -32,7 +32,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Baskets");
+                    b.ToTable("BasketsCliente");
                 });
 
             modelBuilder.Entity("Core.Models.Basket.BasketItem", b =>
@@ -69,6 +69,22 @@ namespace Infrastructure.Data.Migrations
                     b.HasIndex("BasketClienteId");
 
                     b.ToTable("BasketItems");
+                });
+
+            modelBuilder.Entity("Core.Models.Baskets", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("BasketData")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("lastUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Baskets");
                 });
 
             modelBuilder.Entity("Core.Models.Produto", b =>

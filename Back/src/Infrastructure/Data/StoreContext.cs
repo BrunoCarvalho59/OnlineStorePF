@@ -15,8 +15,9 @@ namespace Infrastructure.Data
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<ProdutoCategoria> Categorias { get; set; }
         public DbSet<ProdutoMarca> Marcas { get; set; }
-        public DbSet<BasketCliente> Baskets { get; set; }
+        public DbSet<BasketCliente> BasketsCliente { get; set; }
         public DbSet<BasketItem> BasketItems { get; set; }
+        public DbSet<Baskets> Baskets { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) //Este método é chamado quando o modelo é criado pela primeira vez no banco de dados, e permite personalizar como as classes e propriedades das entidades são mapeadas para as tabelas e colunas do banco de dados.
         {

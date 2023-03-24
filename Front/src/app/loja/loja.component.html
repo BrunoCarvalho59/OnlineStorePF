@@ -49,7 +49,7 @@
             <app-pager
             [totalCount]="totalCount"
             [pageSize]="lojaParams.pageSize"
-            (pageChanged)="onPageChanged">
+            (pageChanged)="onPageChanged($event)">
             </app-pager>
         </div>
     </section>
