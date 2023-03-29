@@ -35,7 +35,7 @@ namespace OnlineStore.API.Controllers
         [HttpGet]
         public async Task<ActionResult<UserDto>> GetUserAtual()
         {
-            var user = await _userManager.FindByEmailFromClaimsPrincipal(User);
+            var user = await _userManager.FindByEmailFromClaimsPrincipal(HttpContext.User);
 
             return new UserDto
             {
@@ -55,7 +55,7 @@ namespace OnlineStore.API.Controllers
         [HttpGet("morada")]
         public async Task<ActionResult<MoradaDto>> GetUserMorada()
         {
-            var user = await _userManager.FindUserByClaimsPrincipleWithAddressAsync(User);
+            var user = await _userManager.FindUserByClaimsPrincipleWithAddressAsync(HttpContext.User);
 
             return _mapper.Map<Morada, MoradaDto>(user.Morada);
         }
@@ -97,12 +97,12 @@ namespace OnlineStore.API.Controllers
         [HttpPost("registo")]
         public async Task<ActionResult<UserDto>> Registo(RegistoDto registoDto)
         {
-            /*
+            
             if (CheckEmailExistenteAsync(registoDto.Email).Result.Value)
             {
-                return new BadRequestObjectResult(new ApiValidationErrorResponse{errors = new []{"Endereço de email em utilização"}});
+                return new BadRequestObjectResult(new ApiValidationErroResponse{Errors = new []{"Endereço de email em utilização"}});
             }
-            */
+            
             var user = new AppUser
             {
                 DisplayNome = registoDto.DisplayNome,

@@ -15,7 +15,7 @@ export class BasketService {
   private basketTotalSource = new BehaviorSubject<BasketTotals | null> (null);
   basketTotalSource$ = this.basketTotalSource.asObservable();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getBasket(id: string) {
     return this.http.get<Basket>(this.baseUrl + 'basket?id=' + id).subscribe({
@@ -39,11 +39,35 @@ export class BasketService {
     return this.basketSource.value;
   }
 
-  addItemToBasket(item: Produto, quantidade = 1) {
-    const itemToAdd = this.mapProductItemToBasketItem(item);
+  addItemToBasket(item: Produto | BasketItem, quantidade = 1) {
+    if (this.isProduto(item)) item = this.mapProductItemToBasketItem(item);
     const basket = this.getCurrentBasketValue() ?? this.createBasket();
-    basket.items = this.addOrUpdateItem(basket.items, itemToAdd, quantidade);
+    basket.items = this.addOrUpdateItem(basket.items, item, quantidade);
     this.setBasket(basket);
+  }
+
+  removeItemFromBasket(id: number, quantidade = 1) {
+    const basket = this.getCurrentBasketValue();
+    if (!basket) return;
+    const item = basket.items.find(x => x.id == id);
+    if (item) {
+      item.quantidade -= quantidade;
+      if (item.quantidade === 0) {
+        basket.items = basket.items.filter(x => x.id !== id);
+      }
+      if (basket.items.length > 0) this.setBasket(basket);
+      else this.deleteBasket(basket);
+    }
+  }
+
+  deleteBasket(basket: Basket) {
+    return this.http.delete(this.baseUrl + 'basket?id='+ basket.id).subscribe({
+      next: () => {
+        this.basketSource.next(null);
+        this.basketTotalSource.next(null);
+        localStorage.removeItem('basket_id');
+      }
+    });
   }
 
   private addOrUpdateItem(items: BasketItem[], itemToAdd: BasketItem, quantidade: number): BasketItem[] {
@@ -81,5 +105,9 @@ export class BasketService {
     const subtotal = basket.items.reduce((a, b) => (b.preco * b.quantidade) + a, 0)
     const total = subtotal + shipping;
     this.basketTotalSource.next({shipping, total, subtotal});
+  }
+
+  private isProduto(item: Produto | BasketItem): item is Produto {
+    return(item as Produto).produtoMarca !== undefined;
   }
 }

@@ -183,12 +183,12 @@ namespace Infrastructure.Identity.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "5b9518bc-f971-4c6f-8e0b-230503eff080", "8462b0a8-eda0-4cb3-9d33-a9c1952a0b23", "GerenteLoja", "GERENTELOJA" });
+                values: new object[] { "db82870b-9621-4679-9ecc-8e01502377a7", "a78fe44b-5d12-49bf-93f6-31fb6ca8dbe6", "Admin", "ADMIN" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "d3cf2bac-0b77-4554-9555-11b9d5c1cc5a", "f47fec2e-595d-4ba4-b389-9df0f60aa4eb", "Admin", "ADMIN" });
+                values: new object[] { "f76ec8e0-668a-4dcf-acb3-1e0b56650854", "dacf8343-d75e-4ec2-ba2a-9fa6b8fc8062", "GerenteLoja", "GERENTELOJA" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

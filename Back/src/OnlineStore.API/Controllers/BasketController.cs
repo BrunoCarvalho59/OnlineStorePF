@@ -1,6 +1,8 @@
+using AutoMapper;
 using Core.Interfaces;
 using Core.Models.Basket;
 using Microsoft.AspNetCore.Mvc;
+using OnlineStore.API.Dtos;
 
 namespace OnlineStore.API.Controllers
 {
@@ -9,9 +11,11 @@ namespace OnlineStore.API.Controllers
     public class BasketController : ControllerBase
     {
         private readonly IBasketRepository _basketRepository;
+        private readonly IMapper _mapper;
 
-        public BasketController(IBasketRepository basketRepository)
+        public BasketController(IBasketRepository basketRepository, IMapper mapper)
         {
+            _mapper = mapper;
             _basketRepository = basketRepository;
         }
 
@@ -24,9 +28,11 @@ namespace OnlineStore.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<BasketCliente>> UpdateBasket(BasketCliente basket)
+        public async Task<ActionResult<BasketCliente>> UpdateBasket(BasketClienteDto basket)
         {
-            var updatedBasket = await _basketRepository.UpdateBasketAsync(basket);
+            var basketCliente = _mapper.Map<BasketClienteDto, BasketCliente>(basket);
+            
+            var updatedBasket = await _basketRepository.UpdateBasketAsync(basketCliente);
 
             return Ok(updatedBasket);
         }

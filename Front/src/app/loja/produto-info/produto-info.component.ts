@@ -10,6 +10,8 @@ import { LojaService } from '../loja.service';
 })
 export class ProdutoInfoComponent implements OnInit {
   produto?: Produto;
+  quantity = 1;
+  quatityInBasket = 0;
 
 
   constructor(private lojaService: LojaService, private activatedRoute: ActivatedRoute) {}

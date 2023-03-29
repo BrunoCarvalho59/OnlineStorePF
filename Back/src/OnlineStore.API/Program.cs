@@ -6,6 +6,7 @@ using Infrastructure.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using OnlineStore.API.Extensions;
+using OnlineStore.API.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +29,7 @@ void RegisterServices(WebApplicationBuilder builder)
     builder.Services.AddControllers();
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
+    builder.Services.AddSwaggerDocumentation();
 
     builder.Services.AddCors(p => p.AddPolicy("corspolicy", build =>
     {
@@ -54,6 +56,12 @@ void RegisterServices(WebApplicationBuilder builder)
 // Método para configurar o pipeline de requisição HTTP
 void ConfigureHttpPipeline(WebApplication app)
 {
+    app.UseMiddleware<ExceptionMiddleware>();
+    
+    app.UseStatusCodePagesWithReExecute("/errors{0}");
+    
+    app.UseSwaggerDocumention();
+
     if (app.Environment.IsDevelopment())
     {
         app.UseSwagger();
