@@ -21,14 +21,18 @@ namespace OnlineStore.API.Extensions
                 opt.UseSqlServer(config.GetConnectionString("IdentityConnection"));
             });
 
-            services.AddIdentityCore<AppUser>(opt =>
+            services.AddIdentity<AppUser, IdentityRole>(opt =>
             {
                 //Adicionar requerimentos aqui
             })
             .AddEntityFrameworkStores<AppIdentityDbContext>()
+            .AddDefaultTokenProviders()
             .AddSignInManager<SignInManager<AppUser>>();
 
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            services.AddAuthentication(options => {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;})
                 .AddJwtBearer(options => 
                 {
                     options.TokenValidationParameters = new TokenValidationParameters
@@ -37,12 +41,9 @@ namespace OnlineStore.API.Extensions
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["Token:Key"])),
                         ValidIssuer = config["Token:Issuer"],
                         ValidateIssuer = true,
+                        ValidateAudience = false
                     };
                 });
-            
-            
-             //Autenticação vem sempre antes da autorização
-            services.AddAuthorization();
 
             return services;
         }

@@ -69,11 +69,10 @@ namespace Infrastructure.Identity
                 await roleManager.CreateAsync(new IdentityRole("Admin"));
             }
 
-            if (!await roleManager.RoleExistsAsync("GestorLoja"))
+            if (!await roleManager.RoleExistsAsync("GerenteLoja"))
             {
-                await roleManager.CreateAsync(new IdentityRole("GestorLoja"));
+                await roleManager.CreateAsync(new IdentityRole("GerenteLoja"));
             }
         }
-
     }
 }

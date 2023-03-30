@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Identity.Migrations
 {
     [DbContext(typeof(AppIdentityDbContext))]
-    [Migration("20230328191623_IdentityMig")]
+    [Migration("20230329175655_IdentityMig")]
     partial class IdentityMig
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -159,15 +159,15 @@ namespace Infrastructure.Identity.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "db82870b-9621-4679-9ecc-8e01502377a7",
-                            ConcurrencyStamp = "a78fe44b-5d12-49bf-93f6-31fb6ca8dbe6",
+                            Id = "a6b5c6b9-f28f-431f-82f3-d7742ee688ae",
+                            ConcurrencyStamp = "c889a947-c7d4-4d9c-a498-0313f2256ae6",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "f76ec8e0-668a-4dcf-acb3-1e0b56650854",
-                            ConcurrencyStamp = "dacf8343-d75e-4ec2-ba2a-9fa6b8fc8062",
+                            Id = "9ab7ef96-314b-47ae-9eaf-f7d5dfaa25a9",
+                            ConcurrencyStamp = "61f9dd78-d612-4773-a0e5-b42527c99ef9",
                             Name = "GerenteLoja",
                             NormalizedName = "GERENTELOJA"
                         });

@@ -31,16 +31,16 @@ namespace OnlineStore.API.Controllers
             _userManager = userManager;
         }
 
-        [Authorize]
+        [Authorize(Roles ="GerenteLoja, Admin")]
         [HttpGet]
         public async Task<ActionResult<UserDto>> GetUserAtual()
         {
-            var user = await _userManager.FindByEmailFromClaimsPrincipal(HttpContext.User);
+            var user = await _userManager.FindByEmailFromClaimsPrinciple(HttpContext.User);
 
             return new UserDto
             {
                 Email = user.Email,
-                Token = _tokenService.CreateToken(user),
+                Token = await _tokenService.CreateToken(user),
                 DisplayNome = user.DisplayNome
             };
         }
@@ -51,11 +51,10 @@ namespace OnlineStore.API.Controllers
             return await _userManager.FindByEmailAsync(email) != null;
         }
 
-        [Authorize]
         [HttpGet("morada")]
         public async Task<ActionResult<MoradaDto>> GetUserMorada()
         {
-            var user = await _userManager.FindUserByClaimsPrincipleWithAddressAsync(HttpContext.User);
+            var user = await _userManager.FindByUserByClaimsPrincipleWithAddressAsync(HttpContext.User);
 
             return _mapper.Map<Morada, MoradaDto>(user.Morada);
         }
@@ -64,7 +63,7 @@ namespace OnlineStore.API.Controllers
         [HttpPut("morada")]
         public async Task<ActionResult<MoradaDto>> UpdateUserMorada(MoradaDto morada)
         {
-            var user = await _userManager.FindUserByClaimsPrincipleWithAddressAsync(HttpContext.User);
+            var user = await _userManager.FindByUserByClaimsPrincipleWithAddressAsync(HttpContext.User);
 
             user.Morada = _mapper.Map<MoradaDto, Morada>(morada);
 
@@ -89,7 +88,7 @@ namespace OnlineStore.API.Controllers
             return new UserDto
             {
                 Email = user.Email,
-                Token = _tokenService.CreateToken(user),
+                Token = await _tokenService.CreateToken(user),
                 DisplayNome = user.DisplayNome
             };
         }
@@ -117,7 +116,7 @@ namespace OnlineStore.API.Controllers
             return new UserDto
             {
                 DisplayNome = user.DisplayNome,
-                Token = _tokenService.CreateToken(user),
+                Token = await _tokenService.CreateToken(user),
                 Email = user.Email
             };
         }

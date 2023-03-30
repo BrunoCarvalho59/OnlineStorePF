@@ -38,19 +38,8 @@ void RegisterServices(WebApplicationBuilder builder)
 
     builder.Services.AddDbContext<StoreContext>(o => o.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
     builder.Services.AddIdentityServices(builder.Configuration);
-    builder.Services.AddIdentity<AppUser, IdentityRole>()
-        .AddEntityFrameworkStores<AppIdentityDbContext>()
-        .AddDefaultTokenProviders();
-    builder.Services.AddScoped<IBasketRepository, BasketRepository>();
-    builder.Services.AddScoped<IProdutoRepository, ProdutoRepository>();
-    builder.Services.AddScoped<ITokenService, TokenService>(); 
-    builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+    builder.Services.AddApplicationServices();
     builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-    builder.Services.AddAuthorization(options =>
-    {
-        options.AddPolicy("Admin", policy => policy.RequireRole("Admin"));
-        options.AddPolicy("GestorLoja", policy => policy.RequireRole("GestorLoja"));
-    });
 }
 
 // Método para configurar o pipeline de requisição HTTP
