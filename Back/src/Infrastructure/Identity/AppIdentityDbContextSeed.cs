@@ -1,4 +1,4 @@
-using Core.Models.Utilizador;
+using Core.Models.Identity;
 using Microsoft.AspNetCore.Identity;
 
 namespace Infrastructure.Identity
@@ -16,12 +16,12 @@ namespace Infrastructure.Identity
                     UserName = "bruno@test.com",
                     Morada = new Morada
                     {
-                        primeiroNome = "Bruno",
-                        ultimoNome = "Carvalho",
-                        rua = "Quinta S. Pedro Hab 5",
-                        localidade = "Miranda do Corvo",
-                        country = "PT",
-                        zip = "3220-220"
+                        PrimeiroNome = "Bruno",
+                        UltimoNome = "Carvalho",
+                        Rua = "Quinta S. Pedro Hab 5",
+                        Localidade = "Miranda do Corvo",
+                        Country = "PT",
+                        Zip = "3220-220"
                     }
                 };
 

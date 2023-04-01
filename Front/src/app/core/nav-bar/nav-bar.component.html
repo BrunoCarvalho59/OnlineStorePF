@@ -8,7 +8,7 @@
         [routerLinkActiveOptions]="{exact: true}"
     >Home</a>
     <a class="p-2" routerLink="/loja" routerLinkActive="active">Loja</a>
-    <a class="p-2" routerLink="/contactos" routerLinkActive="active">Contactos</a>
+    <a class="p-2" routerLink="/test-error" routerLinkActive="active">Erros</a>
   </nav>
   <div class="d-flex align-items-center">
     <a class="position-relative" routerLink="/basket" >
@@ -21,8 +21,32 @@
       <a routerLink="/account/login" class="btn btn-outline-secondary me-2">Login</a>
       <a routerLink="/account/registo" class="btn btn-outline-secondary me-3">Registo</a>
     </ng-container>
+
     <ng-container *ngIf="accountService.currentUser$ | async as user">
-        <p>Bem-vindo {{ user.displayNome }}</p>
+      <div class="dropdown ms-3 me-5" style="cursor: pointer;" dropdown>
+        <a dropdownToggle class="dropdown-toggle">
+          <strong>Bem-vindo {{ user.displayNome }}</strong>
+        </a>
+        <ul *dropdownMenu class="dropdown-menu dropdown-menu-right">
+            <li class="py-1">
+              <a routerLink="/basket" class="dropdown-item">
+                <i class="fa fa-shopping-cart me-3"></i>Ver carrinho
+              </a>
+            </li>
+            <li class="py-1">
+              <a routerLink="/orders" class="dropdown-item">
+                <i class="fa fa-history me-3"></i>Ver compras
+              </a>
+            </li>
+            <div class="dropdown-divider"></div>
+            <li class="py-1">
+              <a (click)="accountService.logout()" class="dropdown-item">
+                <i class="fa fa-sign-out me-3"></i>Logout
+              </a>
+            </li>
+        </ul>
+      </div>
     </ng-container>
+
   </div>
 </header>

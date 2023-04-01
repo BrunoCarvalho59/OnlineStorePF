@@ -1,5 +1,6 @@
 using System.Text.Json;
 using Core.Models;
+using Core.Models.Compras;
 
 namespace Infrastructure.Data
 {
@@ -26,6 +27,13 @@ namespace Infrastructure.Data
                 var produtosData = File.ReadAllText("../Infrastructure/Data/SeedData/produtos.json");
                 var produtos = JsonSerializer.Deserialize<List<Produto>>(produtosData);
                 context.Produtos.AddRange(produtos);
+            }
+            
+            if(!context.MetodosEnvio.Any())
+            {
+                var envioData = File.ReadAllText("../Infrastructure/Data/SeedData/envio.json");
+                var metodos = JsonSerializer.Deserialize<List<MetodoEnvio>>(envioData);
+                context.MetodosEnvio.AddRange(metodos);
             }
 
             if (context.ChangeTracker.HasChanges()) await context.SaveChangesAsync();

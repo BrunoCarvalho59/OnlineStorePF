@@ -61,6 +61,22 @@ namespace Infrastructure.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "MetodosEnvio",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TempoEnvio = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Descricao = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Preco = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MetodosEnvio", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "BasketItems",
                 columns: table => new
                 {
@@ -114,10 +130,72 @@ namespace Infrastructure.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Compras",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ClienteEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CompraData = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    MoradaEnvio_PrimeiroNome = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    MoradaEnvio_UltimoNome = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    MoradaEnvio_Rua = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    MoradaEnvio_Localidade = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    MoradaEnvio_Country = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    MoradaEnvio_Zip = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    MetodoEnvioId = table.Column<int>(type: "int", nullable: true),
+                    SubTotal = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Compras", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Compras_MetodosEnvio_MetodoEnvioId",
+                        column: x => x.MetodoEnvioId,
+                        principalTable: "MetodosEnvio",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CompraItems",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ItemPedido_ProdutoItemId = table.Column<int>(type: "int", nullable: true),
+                    ItemPedido_ProdutoNome = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ItemPedido_FotoUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Preco = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Quantidade = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    CompraId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CompraItems", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_CompraItems_Compras_CompraId",
+                        column: x => x.CompraId,
+                        principalTable: "Compras",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_BasketItems_BasketClienteId",
                 table: "BasketItems",
                 column: "BasketClienteId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CompraItems_CompraId",
+                table: "CompraItems",
+                column: "CompraId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Compras_MetodoEnvioId",
+                table: "Compras",
+                column: "MetodoEnvioId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Produtos_ProdutoCategoriaId",
@@ -139,16 +217,25 @@ namespace Infrastructure.Data.Migrations
                 name: "Baskets");
 
             migrationBuilder.DropTable(
+                name: "CompraItems");
+
+            migrationBuilder.DropTable(
                 name: "Produtos");
 
             migrationBuilder.DropTable(
                 name: "BasketsCliente");
 
             migrationBuilder.DropTable(
+                name: "Compras");
+
+            migrationBuilder.DropTable(
                 name: "Categorias");
 
             migrationBuilder.DropTable(
                 name: "Marcas");
+
+            migrationBuilder.DropTable(
+                name: "MetodosEnvio");
         }
     }
 }

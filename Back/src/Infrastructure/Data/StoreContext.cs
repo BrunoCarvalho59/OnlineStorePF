@@ -1,6 +1,7 @@
 using System.Reflection;
 using Core.Models;
 using Core.Models.Basket;
+using Core.Models.Compras;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,6 +19,10 @@ namespace Infrastructure.Data
         public DbSet<BasketCliente> BasketsCliente { get; set; }
         public DbSet<BasketItem> BasketItems { get; set; }
         public DbSet<Baskets> Baskets { get; set; }
+        public DbSet<Compra> Compras { get; set; }
+        public DbSet<CompraItem> CompraItems { get; set; }
+        public DbSet<MetodoEnvio> MetodosEnvio { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) //Este método é chamado quando o modelo é criado pela primeira vez no banco de dados, e permite personalizar como as classes e propriedades das entidades são mapeadas para as tabelas e colunas do banco de dados.
         {

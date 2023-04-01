@@ -1,0 +1,26 @@
+[
+  {
+    "Nome": "UPS1",
+    "Descricao": "Envio Rápido",
+    "TempoEnvio": "1-2 Dias Úteis",
+    "Preco": 8.99
+  },
+  {
+    "Nome": "UPS2",
+    "Descricao": "Recebe dentro de 5 dias",
+    "TempoEnvio": "2-5 Dias Úteis",
+    "Preco": 4.80
+  },
+  {
+    "Nome": "UPS3",
+    "Descricao": "Barato mas mais lento",
+    "TempoEnvio": "5-10 Dias Úteis",
+    "Preco": 1.99
+  },
+  {
+    "Nome": "Grátis",
+    "Descricao": "Grátis, pagas apenas o preço do produto",
+    "TempoEnvio": "1-2 Dias Úteis",
+    "Preco": 0
+  }
+]

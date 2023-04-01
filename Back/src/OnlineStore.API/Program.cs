@@ -1,5 +1,5 @@
 using Core.Interfaces;
-using Core.Models.Utilizador;
+using Core.Models.Identity;
 using Infrastructure.Data;
 using Infrastructure.Identity;
 using Infrastructure.Services;

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Data.Migrations
 {
     [DbContext(typeof(StoreContext))]
-    [Migration("20230324183429_InitialMig")]
+    [Migration("20230331172052_InitialMig")]
     partial class InitialMig
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -87,6 +87,86 @@ namespace Infrastructure.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Baskets");
+                });
+
+            modelBuilder.Entity("Core.Models.Compras.Compra", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("ClienteEmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CompraData")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("MetodoEnvioId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("SubTotal")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MetodoEnvioId");
+
+                    b.ToTable("Compras");
+                });
+
+            modelBuilder.Entity("Core.Models.Compras.CompraItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int?>("CompraId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Preco")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Quantidade")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CompraId");
+
+                    b.ToTable("CompraItems");
+                });
+
+            modelBuilder.Entity("Core.Models.Compras.MetodoEnvio", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Descricao")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nome")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Preco")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("TempoEnvio")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MetodosEnvio");
                 });
 
             modelBuilder.Entity("Core.Models.Produto", b =>
@@ -167,6 +247,81 @@ namespace Infrastructure.Data.Migrations
                         .HasForeignKey("BasketClienteId");
                 });
 
+            modelBuilder.Entity("Core.Models.Compras.Compra", b =>
+                {
+                    b.HasOne("Core.Models.Compras.MetodoEnvio", "MetodoEnvio")
+                        .WithMany()
+                        .HasForeignKey("MetodoEnvioId");
+
+                    b.OwnsOne("Core.Models.Compras.Morada", "MoradaEnvio", b1 =>
+                        {
+                            b1.Property<int>("CompraId")
+                                .HasColumnType("int");
+
+                            b1.Property<string>("Country")
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("Localidade")
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("PrimeiroNome")
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("Rua")
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("UltimoNome")
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("Zip")
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.HasKey("CompraId");
+
+                            b1.ToTable("Compras");
+
+                            b1.WithOwner()
+                                .HasForeignKey("CompraId");
+                        });
+
+                    b.Navigation("MetodoEnvio");
+
+                    b.Navigation("MoradaEnvio")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Core.Models.Compras.CompraItem", b =>
+                {
+                    b.HasOne("Core.Models.Compras.Compra", null)
+                        .WithMany("CompraItems")
+                        .HasForeignKey("CompraId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.OwnsOne("Core.Models.Compras.ProdutoItemCompra", "ItemPedido", b1 =>
+                        {
+                            b1.Property<int>("CompraItemId")
+                                .HasColumnType("int");
+
+                            b1.Property<string>("FotoUrl")
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<int>("ProdutoItemId")
+                                .HasColumnType("int");
+
+                            b1.Property<string>("ProdutoNome")
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.HasKey("CompraItemId");
+
+                            b1.ToTable("CompraItems");
+
+                            b1.WithOwner()
+                                .HasForeignKey("CompraItemId");
+                        });
+
+                    b.Navigation("ItemPedido");
+                });
+
             modelBuilder.Entity("Core.Models.Produto", b =>
                 {
                     b.HasOne("Core.Models.ProdutoCategoria", "ProdutoCategoria")
@@ -189,6 +344,11 @@ namespace Infrastructure.Data.Migrations
             modelBuilder.Entity("Core.Models.Basket.BasketCliente", b =>
                 {
                     b.Navigation("Items");
+                });
+
+            modelBuilder.Entity("Core.Models.Compras.Compra", b =>
+                {
+                    b.Navigation("CompraItems");
                 });
 #pragma warning restore 612, 618
         }
