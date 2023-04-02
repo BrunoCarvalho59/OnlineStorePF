@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AccountService } from '../account.service';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-login',
@@ -21,5 +22,11 @@ export class LoginComponent {
       next: () => this.router.navigateByUrl('/loja')
     });
   }
-}
 
+  onGuestLogin(){
+    const guestId = uuidv4();
+    localStorage.setItem('guestId', guestId);
+    this.router.navigate(['/']);
+  }
+
+}
