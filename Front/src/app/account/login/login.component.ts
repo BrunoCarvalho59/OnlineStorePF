@@ -27,6 +27,7 @@ export class LoginComponent {
     const guestId = uuidv4();
     localStorage.setItem('guestId', guestId);
     this.router.navigate(['/']);
+    this.accountService.guestLogin$.next();
   }
 
 }

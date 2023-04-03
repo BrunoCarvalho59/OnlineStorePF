@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, map } from 'rxjs';
+import { BehaviorSubject, map, Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { User } from '../shared/models/user';
 
@@ -13,6 +13,8 @@ export class AccountService {
   baseUrl = environment.apiUrl;
   private currentUserSource = new BehaviorSubject<User | null>(null);
   currentUser$ = this.currentUserSource.asObservable();
+  welcomeMessage$ = new Subject<string>();
+  guestLogin$ = new Subject<void>();
 
   constructor(private http: HttpClient, private router: Router) {  }
 
@@ -50,12 +52,22 @@ export class AccountService {
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('guestId');
     this.currentUserSource.next(null);
+    this.welcomeMessage$.next('');
     this.router.navigateByUrl('/');
+    this.guestLogin$.next();
   }
 
   checkEmailExists(email: string) {
     return this.http.get<boolean>(this.baseUrl + 'account/emailexiste?email=' + email);
   }
+
+  isGuest(): Observable<boolean> {
+    return this.currentUser$.pipe(
+      map(user => user === null && localStorage.getItem('guestId') !== null)
+    );
+  }
+
 
 }
