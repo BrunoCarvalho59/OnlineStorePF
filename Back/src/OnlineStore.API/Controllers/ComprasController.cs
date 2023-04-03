@@ -1,6 +1,7 @@
 using AutoMapper;
 using Core.Interfaces;
 using Core.Models.Compras;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OnlineStore.API.Dtos;
 using OnlineStore.API.Erros;
@@ -8,7 +9,7 @@ using OnlineStore.API.Extensions;
 
 namespace OnlineStore.API.Controllers
 {
-    //[Authorize] Para ativar compras feitas apenas por clientes com login feito
+    [Authorize]
     public class ComprasController : BaseApiController
     {
         private readonly IComprasService _comprasService;

@@ -51,6 +51,7 @@ namespace OnlineStore.API.Controllers
             return await _userManager.FindByEmailAsync(email) != null;
         }
 
+        [Authorize]
         [HttpGet("morada")]
         public async Task<ActionResult<MoradaDto>> GetUserMorada()
         {

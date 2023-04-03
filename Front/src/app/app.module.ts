@@ -10,6 +10,7 @@ import { HomeModule } from './home/home.module';
 import { CoreModule } from './core/core.module';
 import { BasketModule } from './basket/basket.module';
 import { ErrorInterceptor } from './core/interceptors/error.interceptor';
+import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { ErrorInterceptor } from './core/interceptors/error.interceptor';
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass:JwtInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, map, Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { User } from '../shared/models/user';
+import { User, Morada } from '../shared/models/user';
 
 
 @Injectable({
@@ -69,5 +69,15 @@ export class AccountService {
     );
   }
 
+  getUserMorada() {
+    return this.http.get<Morada>(this.baseUrl + 'account/morada');
+  }
 
+  updateUserMorada(morada: Morada) {
+    return this.http.put(this.baseUrl + 'account/morada', morada);
+  }
+
+  /*updateRoles(role: User) {
+    return this.http.put(this.baseUrl + 'account/role', role);
+  } //ideia para alterar os roles */
 }
